@@ -34,4 +34,7 @@ Example:
     visited,bsmiles = getFragments(visited,bsmiles)
 
 # Installation
+You need to install rdkit first. https://www.rdkit.org/docs/Install.html
+
+conda create -c rdkit -n my-rdkit-env rdkit
 pip install BSMILES
