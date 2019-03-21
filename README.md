@@ -1,7 +1,11 @@
 # transformation between smiles and bsmiles
 All chemical molecules can be represented by SMILES notation. But from SMILES notation, can not seperate molecules into fragments directly. Here I create a new notation called BSMILES which is easier to check each fragment.
+
 Example:
-  SMILES notation: O(=C1CSC(c4ccccn4)N(c2ccc3c(cccc3)c2)1)                                                                       BSMILES notation: O{0=C!CSCN!{4c%ccc!c(cccc!)c%}{3c!ccccn!}}
+
+  SMILES notation: O(=C1CSC(c4ccccn4)N(c2ccc3c(cccc3)c2)1)   
+  
+  BSMILES notation: O{0=C!CSCN!{4c%ccc!c(cccc!)c%}{3c!ccccn!}}
   
   ## how to convert SMILES to BSMILES
     from BSMILES.BSMILES import encode 
