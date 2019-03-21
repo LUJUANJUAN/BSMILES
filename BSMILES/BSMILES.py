@@ -8,9 +8,6 @@ Created on Tue Nov 27 21:07:29 2018
 
 
 from rdkit import Chem
-import time
-cur_time = time.asctime(time.localtime(time.time()))
-print("version_12_2.py"+str(cur_time))
 double1 = {'L': 'Cl', 'B': 'Br', 'D': '[C@@H]', 'E': '[C@H]', 'Z': '[nH]', 'Y': '[N+]', 'X': '[O-]', 'W': '[n+]', 'V': '[N-]'}
 double2 = {'Cl': 'L', 'Br': 'B', '[C@@H]': 'D', '[C@H]': 'E', '[nH]': 'Z', '[N+]': 'Y', '[O-]': 'X', '[n+]': 'W', '[N-]': 'V'}
 unvisit = ["a","g","h","j","m","q","r","t","u","A","G","H","J","M","Q","R","T","U"]
@@ -34,6 +31,7 @@ def filter_3rings(mol):
     return False
     
 def find_fragment(cur_idx, mol):
+    #modify this function later
     stack = []
     pare = []
     stack.append(cur_idx)
@@ -44,7 +42,7 @@ def find_fragment(cur_idx, mol):
     notation = ""
     sublist = []
     count = {}
-    while stack :#DFS 
+    while stack : 
         #cur_idx = stack.top()[0]忘了这个想法
         cur_idx = stack[-1]
         flag = False
@@ -145,12 +143,6 @@ def find_fragment(cur_idx, mol):
             #if x > 1:#这样做是因为不经过分岔点的没有放入sub里面
             #现在不经过的也放到sub里面
             for i  in range (x -1 ):#did not append last sub
-#                sub = sublist[0]
-#                s += sub
-#                if len(sublist) - 1  != 0:
-#                    sublist = sublist[1:]
-#                else:
-#                    sublist = []
                 #这里要确保每次选择的子集是属于当前点的，所以从后往前加
                 sub = sublist.pop()
                 #但是会出现atomlist里面排前面的atom符号出现在了后面
@@ -216,43 +208,39 @@ def formA_(idx,mol,visited):#nei_pare最好存一对，这样还方便确认bond
 def encode(smi):
     #print(smi)
     mol = Chem.MolFromSmiles(smi)
-#    right = []
-#    left = []
-#    
-#    for s in smi:
-#        if s == "\\":
-#            
-#        elif s == "/"
-#    
     #step 1: use filter remove 3_rings
     if filter_3rings(mol):
         return "false","false"
     visited = []
-    formA, non_c_formA, visited = formA_(0,mol,visited)
-    return formA
-#print(encode_formA("CN1CCN(CC2=c3oc(=O)/c(=C4\C=CC=CN4)cc3C=CC2=O)CC1"))
+    bsmiles, non_c_formA, visited = formA_(0,mol,visited)
+    return bsmiles
     
-#import pickle
-#
-#f = open("smiles_validAll.txt","rb")
-#smiles = pickle.load(f)
-#f.close()
-##smiles = "O=C(CN(Cc1ccc(F)cc1)C(=O)CCC(=O)Nc1ccccn1)NCc1ccco1"
-#count = 0
-#i = 0
-#bsmiles = []
-#for s in smiles:
-#    i += 1
-#    #print("smiles" + str(i) + ":  ",s)
-##    !!
-#    formA,non_c_formA = encode_formA(s)
-#    if formA == "false":
-#        continue
-#    else:
-#        bsmiles.append(formA)
-#f = open("bsmiles_valid","wb")
-#pickle.dump(bsmiles,f)
-#f.close()
+import pickle
+
+def encode_file(inputfile,outputfile):
+    #inputfile: filename
+    #outputfile:filename
+    try:
+        f = open(inputfile,"rb")
+        smiles = pickle.load(f)
+        f.close()
+        i = 0
+        bsmiles = []
+        for s in smiles:
+            i += 1
+            #print("smiles" + str(i) + ":  ",s)
+        #    !!
+            formA,non_c_formA = encode(s)
+            if formA == "false":
+                continue
+            else:
+                bsmiles.append(formA)
+        f = open(outputfile,"wb")
+        pickle.dump(bsmiles,f)
+        f.close()
+    except FileNotFoundError:
+        print("please input correct file name")
+
 
     
 
