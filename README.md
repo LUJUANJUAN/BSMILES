@@ -3,17 +3,17 @@ All chemical molecules can be represented by SMILES notation. But from SMILES no
 Example:
   SMILES notation: O(=C1CSC(c4ccccn4)N(c2ccc3c(cccc3)c2)1)                                                                       BSMILES notation: O{0=C!CSCN!{4c%ccc!c(cccc!)c%}{3c!ccccn!}}
   
-  # how to convert SMILES to BSMILES
+  ## how to convert SMILES to BSMILES
     from BSMILES.BSMILES import encode 
 
      bsmiles = encode(smiles)
 
-  # how to convert BSMILES back to SMILES
+  ## how to convert BSMILES back to SMILES
     from BSMILES.B_to_smiles import convertB 
 
     smiles = convertB(bsmiles)
 
-  # how to get fragments from BSMILES notation
+  ## how to get fragments from BSMILES notation
   1. input one file then got one output file
     from BSMILES.B_to_smiles import bsmiles_to_frag 
 
