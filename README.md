@@ -28,7 +28,7 @@ Example:
   2. input one bsmiles string return two vectors, the second one contains fragments.
     from BSMILES.B_to_smiles import getFragments
     
-    bsiles = "any_kind_of_bsmiles"
+    bsmiles = "any_kind_of_bsmiles"
     visited = []#contain all unique fragments from bsmiles
     fragments = []#contain all fragments
     visited,bsmiles = getFragments(visited,bsmiles)
