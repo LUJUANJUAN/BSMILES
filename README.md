@@ -18,9 +18,9 @@ Example:
     smiles = convertB(bsmiles)
 
   ### how to get fragments from BSMILES notation
-  1. input one file then got one output file
+  1. input one file then got one output file.
+    
     from BSMILES.B_to_smiles import bsmiles_to_frag 
-
     inputfile_name ="bsmiles"
     outputfile_name="fragment"
     bsmiles_to_frag(inputfile_name,outputfile_name)
