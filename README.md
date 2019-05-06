@@ -26,8 +26,8 @@ Example:
     bsmiles_to_frag(inputfile_name,outputfile_name)
 
   2. input one bsmiles string return two vectors, the second one contains fragments.
-    from BSMILES.B_to_smiles import getFragments
     
+    from BSMILES.B_to_smiles import getFragments
     bsmiles = "any_kind_of_bsmiles"
     visited = []#contain all unique fragments from bsmiles
     fragments = []#contain all fragments
