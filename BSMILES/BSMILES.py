@@ -210,7 +210,7 @@ def encode(smi):
     mol = Chem.MolFromSmiles(smi)
     #step 1: use filter remove 3_rings
     if filter_3rings(mol):
-        return "false","false"
+        return "false"
     visited = []
     bsmiles, non_c_formA, visited = formA_(0,mol,visited)
     return bsmiles
@@ -230,7 +230,7 @@ def encode_file(inputfile,outputfile):
             i += 1
             #print("smiles" + str(i) + ":  ",s)
         #    !!
-            formA,non_c_formA = encode(s)
+            formA = encode(s)
             if formA == "false":
                 continue
             else:
